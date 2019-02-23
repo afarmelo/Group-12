@@ -100,7 +100,7 @@ public class tcEdited
 			//Option 1: Select race info
 			if(choice == 1)	
 			{
-				String sql = "SELECT * FROM race;";
+				String sql = "SELECT * FROM race";
 
 				rs = stmnt.executeQuery(sql);
 
@@ -111,22 +111,22 @@ public class tcEdited
 
 				while(rs.next())
 				{
-					System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s", rs.getString(1), rs.getString(2), 
+					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6) );
 
 					System.out.println();
 				}
-
+        
 				for(int i = 0; i < 150; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			//Option 2: Select horse info
 			if(choice==2)
 			{
-				String sql = "SELECT * FROM horse;";
+				String sql = "SELECT * FROM horse";
 
 				rs = stmnt.executeQuery(sql);
-
+        
 				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s, %20s, %10s, %20s", "horseID", "_name", 
 						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID\n");
 				for(int i = 0; i < 150; i++) { System.out.print("-"); }
@@ -134,23 +134,23 @@ public class tcEdited
 
 				while(rs.next())
 				{
-					System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s, %20s, %10s, %20s", rs.getString(1), rs.getString(2), 
+					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),  rs.getString(7),  
 							  rs.getString(8),  rs.getString(9),  rs.getString(10) );
 
 					System.out.println();
 				}
-
+        
 				for(int i = 0; i < 150; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			//Option 3: Select jockey info
 			if(choice == 3)	
 			{
-				String sql = "SELECT * FROM jockey;";
+				String sql = "SELECT * FROM jockey";
 
 				rs = stmnt.executeQuery(sql);
-
+        
 				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s", "jockeyID", "_name", 
 						"colors", "height", "weight", "_rank", "earnings\n");
 				for(int i = 0; i < 150; i++) { System.out.print("-"); }
@@ -158,7 +158,7 @@ public class tcEdited
 
 				while(rs.next())
 				{
-					System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s", rs.getString(1), rs.getString(2), 
+					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
 							 rs.getString(7));
 
@@ -180,8 +180,31 @@ public class tcEdited
 			//Option 8:
 			if(choice == 8){}
 			//Option 9: 
-			if(choice == 9){}
+			if(choice == 9)
+			{
 			
+				String sql = "SELECT * FROM horse JOIN winner ON horse.horseID=winner.horseID";
+
+				rs = stmnt.executeQuery(sql);
+
+				System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s", "horseID", "_name", 
+						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID", "raceID",
+						 "completiontime", "prizewon");
+				for(int i = 0; i < 220; i++) { System.out.print("-"); }
+				System.out.println();
+
+				while(rs.next())
+				{
+					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s", rs.getString(1), rs.getString(2), 
+							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+							  rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
+
+					System.out.println();
+				}
+
+				for(int i = 0; i < 220; i++) { System.out.print("-"); }
+				System.out.println();
+			}
 		
 		} catch(Exception e) {
 			System.out.println("Exception executing statement on database");
@@ -210,4 +233,3 @@ public class tcEdited
 	} //end main()
 
 } //end .java
-
