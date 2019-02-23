@@ -169,9 +169,9 @@ public class tcEdited
 				System.out.println();
 			}
 			
-			//Option 4:
+			//Option 4: Add a new horse
 			if(choice == 4){}
-			//Option 5: 
+			//Option 5: Add a new jockey
 			if(choice == 5){}
 			//Option 6:
 			if(choice == 6){}
