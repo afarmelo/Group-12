@@ -174,7 +174,16 @@ public class tcEdited
 			//Option 5: Add a new jockey
 			if(choice == 5){}
 			//Option 6: Delete a horse
-			if(choice == 6){}
+			if(choice == 6) {
+			    String sql = "DELETE FROM horse where horseID = ?;";
+			    pStmnt = connect.prepareStatement(sql);
+			    System.out.print("Enter a horseID for the horse to remove: ");
+			    int horseID = scan.nextInt();
+			    pStmnt.setInt(1, horseID);
+			    if (pStmnt.executeUpdate() > 0) {
+				System.out.println("Horse with horseID: " + horseID + " deleted successfully");
+			    }
+			}
 			//Option 7: Delete a jockey
 			if(choice == 7){}
 			//Option 8: Join Horse and Jockey
