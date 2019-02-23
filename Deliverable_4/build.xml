@@ -7,7 +7,7 @@
 
   <!-- properties for execution arguments -->
   <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-  <property name="path" value="jdbc:mysql://localhost:3306/TripleCrown"/>  
+  <property name="path" value="jdbc:mysql://localhost/TripleCrown?autoReconnect=true&amp;&amp;useSSL=false&amp;&amp;allowPublicKeyRetrieval=true&amp;&amp;useLegacyDatetimeCode=false&amp;&amp;serverTimezone=America/New_York"/>  
 
   <!-- properties for compilation -->
   <property name="src.dir" value="src/java"/>
@@ -45,34 +45,14 @@
     </javac>
     <echo message="Compilation complete."/>
   </target>
-
-  <!-- build.gui -->
-  <target name="build.gui" depends="prepare">
-    <echo message="Compiling gui..."/>
-    <javac srcdir="${src.dir}" includeantruntime="false" destdir="${classes}">
-      <classpath refid="compile.classpath"/>
-    </javac>
-    <echo message="Done compiling gui"/>
-  </target>
-
-  <!-- build.all -->
-  <target name="build.all" depends="build, build.gui"/>
-
+  
   <!-- execute -->
   <target name="execute" depends="build">
     <echo message="Executing application.."/>
-    <java classname="ser322.TripleCrownDatabase" fork="yes">
+    <java classname="ser322.tcEdited" fork="no">
       <classpath refid="compile.classpath"/>
       <arg value="${path}"/>
       <arg value="${driver}"/>
-    </java>
-  </target>
-
-  <!-- execute.gui -->
-  <target name="execute.gui" depends="build">
-    <echo message="Executing gui.."/>
-    <java classname="ser322.DBGUI" fork="yes">
-      <classpath refid="compile.classpath"/>
     </java>
   </target>
 </project>
