@@ -173,9 +173,9 @@ public class tcEdited
 			if(choice == 4){}
 			//Option 5: Add a new jockey
 			if(choice == 5){}
-			//Option 6:
+			//Option 6: Delete a horse
 			if(choice == 6){}
-			//Option 7:
+			//Option 7:Delete a jockey
 			if(choice == 7){}
 			//Option 8:
 			if(choice == 8){}
