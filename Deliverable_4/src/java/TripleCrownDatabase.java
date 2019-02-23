@@ -100,18 +100,14 @@ public class TripleCrownDatabase {
 	try{	   
 	    // Get login info
 	    String pass;
-	    /**
 	    Console cons = System.console();       
 	    System.out.print("Please enter your login username: ");
 	    user = cons.readLine();
 	    char[] passArr = cons.readPassword("Enter your password: ");
 	    pass = new String(passArr);
 	    System.out.println();
-	    **/
-	    user = "afarmelo";
-	    pass = "Iloveyou12";
 	    
-	    // Connect to database
+	    // Connect to database	    
 	    Class.forName(driver);
 	    System.out.println("Connecting to database...");
 	    connect = DriverManager.getConnection(url, user, pass);
