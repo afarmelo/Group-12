@@ -175,11 +175,11 @@ public class tcEdited
 			if(choice == 5){}
 			//Option 6: Delete a horse
 			if(choice == 6){}
-			//Option 7:Delete a jockey
+			//Option 7: Delete a jockey
 			if(choice == 7){}
-			//Option 8:
+			//Option 8: Join Horse and Jockey
 			if(choice == 8){}
-			//Option 9: 
+			//Option 9: Join Horse and Winner
 			if(choice == 9)
 			{
 			
