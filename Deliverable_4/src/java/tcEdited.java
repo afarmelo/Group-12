@@ -185,7 +185,16 @@ public class tcEdited
 			    }
 			}
 			//Option 7: Delete a jockey
-			if(choice == 7){}
+			if(choice == 7){
+			    String sql = "DELETE FROM jockey where jockeyID = ?;";
+			    pStmnt = connect.prepareStatement(sql);
+			    System.out.print("Enter a jockeyID for the jockey to remove: ");
+			    int jockeyID = scan.nextInt();
+			    pStmnt.setInt(1, jockeyID);
+			    if (pStmnt.executeUpdate() > 0) {
+				System.out.println("Jockey with jockeyID: " + jockeyID + " deleted successfully");
+			    }
+			}
 			//Option 8: Join Horse and Jockey
 			if(choice == 8){}
 			//Option 9: Join Horse and Winner
