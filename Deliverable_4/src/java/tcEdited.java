@@ -104,20 +104,20 @@ public class tcEdited
 
 				rs = stmnt.executeQuery(sql);
 
-				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|", "RaceID", "Track", 
+				System.out.printf("|%9s|%15s|%9s|%17s|%9s|%9s|", "RaceID", "Track", 
 						"Distance", "Prizewon", "Gates", "Participants\n");
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 120; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
 				{
-					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s", rs.getString(1), rs.getString(2), 
+					System.out.printf("|%9s|%15s|%9s|%17s|%9s|%9s", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6) );
 
 					System.out.println();
 				}
         
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 120; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			//Option 2: Select horse info
@@ -129,7 +129,7 @@ public class tcEdited
         
 				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", "horseID", "_name", 
 						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID\n");
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 120; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
@@ -140,7 +140,7 @@ public class tcEdited
 					System.out.println();
 				}
         
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 120; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			//Option 3: Select jockey info
@@ -152,7 +152,7 @@ public class tcEdited
         
 				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", "jockeyID", "_name", 
 						"colors", "height", "weight", "_rank", "earnings\n");
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 120; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
@@ -164,7 +164,7 @@ public class tcEdited
 					System.out.println();
 				}
 
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 120; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			
@@ -286,17 +286,17 @@ public class tcEdited
 
 				rs = stmnt.executeQuery(sql);
 
-				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", 
+				System.out.printf("|%10s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%15s|%9s|%9s|%9s|%5s|%11s|%9s|%9s|%9s|", 
 						"Jockey ID", "Name", "Colors", "Height", "Weight", "Rank", "Earnings",
 							"Horse ID", "Name", "Height", "Weight", "Value", "Age", "Breed", "ownerID",
 							"jockeyID", "trainerID|\n");
 
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				for(int i = 0; i < 176; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
 				{
-					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|",
+					System.out.printf("|%10s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%15s|%9s|%9s|%9s|%5s|%11s|%9s|%9s|%9s|",
 							rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
 							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
 							rs.getString(9),rs.getString(10), rs.getString(11), rs.getString(12), 
@@ -305,8 +305,9 @@ public class tcEdited
 
 					System.out.println();
 				}
-
-				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				
+				System.out.print("|");
+				for(int i = 0; i < 176; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 	
