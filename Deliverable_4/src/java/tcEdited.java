@@ -172,8 +172,8 @@ public class tcEdited
 			//Option 4: Add a new horse
 			if(choice == 4){
 				//declare temp variables 
-				int HORSEid, HEIGHT, WEIGHT, VALUE, AGE, OWNERid, JOCKEYid, TRAINERid;
-				String NAME, BREED;
+				int HORSEid, H, W, V, A, OWNERid, JOCKEYid, TRAINERid;
+				String N, B;
 				Scanner scan = new Scanner(System.in);
 				//collect data about the horse that is being added to the database
 				System.out.println("You have selected the option to add a horse.");
@@ -182,17 +182,17 @@ public class tcEdited
 				System.out.println("Please enter an number that represents the horse ID:");
 				HORSEid = scan.nextInt();
 				System.out.println("Please enter the name of the horse:");
-				NAME = scan.nextLine();
+				N = scan.nextLine();
 				System.out.println("Please enter the height of the horse:");
-				HEIGHT = scan.nextInt();
+				H = scan.nextInt();
 				System.out.println("Please enter the weight of the horse:");
-				WEIGHT = scan.nextInt();
+				W = scan.nextInt();
 				System.out.println("Please enter the value (net worth) of the horse:");
-				VALUE = scan.nextInt();
+				V = scan.nextInt();
 				System.out.println("Please enter the age of the horse:");
-				AGE = scan.nextInt();
+				A = scan.nextInt();
 				System.out.println("Please enter the breed of the horse:");
-				BREED = scan.nextLine();
+				B = scan.nextLine();
 				System.out.println("Please enter the Owner ID number that corresponds to the horse:");
 				OWNERid = scan.nextInt();
 				System.out.println("Please enter the Jockey ID number that corresponds to the horse:");
@@ -205,12 +205,12 @@ public class tcEdited
 				
 				PreparedStatement pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, HORSEid);
-				pStmnt.setString(2, NAME);
-				pStmnt.setInt(3, HEIGHT);
-				pStmnt.setInt(4, WEIGHT);
-				pStmnt.setInt(5, VALUE);
-				pStmnt.setInt(6, AGE);
-				pStmnt.setString(7, BREED);
+				pStmnt.setString(2, N);
+				pStmnt.setInt(3, H);
+				pStmnt.setInt(4, W);
+				pStmnt.setInt(5, V);
+				pStmnt.setInt(6, A);
+				pStmnt.setString(7, B);
 				pStmnt.setInt(8, OWNERid);
 				pStmnt.setInt(9, JOCKEYid);
 				pStmnt.setInt(10, TRAINERid);
@@ -218,30 +218,11 @@ public class tcEdited
 				// execute the preparedstatement
       				pStmnt.execute();
 				Sytem.out.println("The horse has been successfully inserted into the database!");
-				
-				/*
-				//print horse table (with the new horse included)
-				String sql = "SELECT * FROM horse";
-				rs = stmnt.executeQuery(sql);
-				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s, %20s, %10s, %20s", "horseID", "_name", 
-						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID\n");
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
-				System.out.println();
-				while(rs.next())
-				{
-					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s", rs.getString(1), rs.getString(2), 
-							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),  rs.getString(7),  
-							  rs.getString(8),  rs.getString(9),  rs.getString(10) );
-					System.out.println();
-				}
-        
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
-				System.out.println();*/
 			}
 			//Option 5: Add a new jockey
 			if(choice == 5){//declare temp variables 
-				int JOCKEYid, HEIGHT, WEIGHT, RANK, EARNINGS;
-				String NAME, COLORS;
+				int JOCKEYid, HT, WT, RK, ERNGS;
+				String Nm, CLRS;
 				Scanner scan = new Scanner(System.in);
 				//collect data about the jockey that is being added to the database
 				System.out.println("You have selected the option to add a jockey.");
@@ -250,55 +231,33 @@ public class tcEdited
 				System.out.println("Please enter an number that represents the jockey ID:");
 				JOCKEYid = scan.nextInt();
 				System.out.println("Please enter the name of the jockey:");
-				NAME = scan.nextLine();
+				Nm = scan.nextLine();
 				System.out.println("Please enter the colors worn by the jockey:");
-				COLORS = scan.nextLine();
+				CLRS = scan.nextLine();
 				System.out.println("Please enter the height of the jockey:");
-				HEIGHT = scan.nextInt();
+				HT = scan.nextInt();
 				System.out.println("Please enter the weight of the jockey:");
-				WEIGHT = scan.nextInt();
+				WT = scan.nextInt();
 				System.out.println("Please enter the rank of the jockey:");
-				RANK = scan.nextInt();
+				RK = scan.nextInt();
 				System.out.println("Please enter the earnings accrued by the jockey:");
-				EARNINGS = scan.nextInt();
+				ERNGS = scan.nextInt();
 				
 				//create the prepared statement 
 				String query = " insert into jockey (jockeyID, _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
 				
 				PreparedStatement pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, JOCKEYid);
-				pStmnt.setString(2, NAME);
-				pStmnt.setString(3, COLORS);
-				pStmnt.setInt(4, HEIGHT);
-				pStmnt.setInt(5, WEIGHT);
-				pStmnt.setInt(6, RANK);
-				pStmnt.setInt(7, EARNINGS);
+				pStmnt.setString(2, Nm);
+				pStmnt.setString(3, CLRS);
+				pStmnt.setInt(4, HT);
+				pStmnt.setInt(5, WT);
+				pStmnt.setInt(6, RK);
+				pStmnt.setInt(7, ERNGS);
 				
 				// execute the preparedstatement
       				pStmnt.execute();
 				Sytem.out.println("The jockey has been successfully inserted into the database!");
-				/*
-				//print jockey table (with the new jockey included)
-				String sql = "SELECT * FROM jockey";
-
-				rs = stmnt.executeQuery(sql);
-        
-				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s", "jockeyID", "_name", 
-						"colors", "height", "weight", "_rank", "earnings\n");
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
-				System.out.println();
-
-				while(rs.next())
-				{
-					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s", rs.getString(1), rs.getString(2), 
-							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
-							 rs.getString(7));
-
-					System.out.println();
-				}
-
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
-				System.out.println();*/
 			}
 			//Option 6: Delete a horse
 			if(choice == 6) {
