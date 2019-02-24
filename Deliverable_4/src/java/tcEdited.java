@@ -201,7 +201,7 @@ public class tcEdited
 				TRAINERid = scan.nextInt();
 				
 				//create the prepared statement 
-				String query = " insert into users (horseID, _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String query = " insert into horse (horseID, _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				
 				PreparedStatement pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, HORSEid);
@@ -220,7 +220,7 @@ public class tcEdited
 				Sytem.out.println("The horse has been successfully inserted into the database!");
 				
 				/*
-				//print horse table (with the new horse included) from database 
+				//print horse table (with the new horse included)
 				String sql = "SELECT * FROM horse";
 				rs = stmnt.executeQuery(sql);
 				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s, %20s, %10s, %20s", "horseID", "_name", 
@@ -239,7 +239,67 @@ public class tcEdited
 				System.out.println();*/
 			}
 			//Option 5: Add a new jockey
-			if(choice == 5){}
+			if(choice == 5){//declare temp variables 
+				int JOCKEYid, HEIGHT, WEIGHT, RANK, EARNINGS;
+				String NAME, COLORS;
+				Scanner scan = new Scanner(System.in);
+				//collect data about the jockey that is being added to the database
+				System.out.println("You have selected the option to add a jockey.");
+				System.out.println("The required fields are Jockey ID.");
+				System.out.println("If any non-required fields are not applicable to your jockey please enter NULL.");
+				System.out.println("Please enter an number that represents the jockey ID:");
+				JOCKEYid = scan.nextInt();
+				System.out.println("Please enter the name of the jockey:");
+				NAME = scan.nextLine();
+				System.out.println("Please enter the colors worn by the jockey:");
+				COLORS = scan.nextLine();
+				System.out.println("Please enter the height of the jockey:");
+				HEIGHT = scan.nextInt();
+				System.out.println("Please enter the weight of the jockey:");
+				WEIGHT = scan.nextInt();
+				System.out.println("Please enter the rank of the jockey:");
+				RANK = scan.nextInt();
+				System.out.println("Please enter the earnings accrued by the jockey:");
+				EARNINGS = scan.nextInt();
+				
+				//create the prepared statement 
+				String query = " insert into jockey (jockeyID, _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
+				
+				PreparedStatement pStmnt = connect.prepareStatement(query);
+				pStmnt.setInt(1, JOCKEYid);
+				pStmnt.setString(2, NAME);
+				pStmnt.setString(3, COLORS);
+				pStmnt.setInt(4, HEIGHT);
+				pStmnt.setInt(5, WEIGHT);
+				pStmnt.setInt(6, RANK);
+				pStmnt.setInt(7, EARNINGS);
+				
+				// execute the preparedstatement
+      				pStmnt.execute();
+				Sytem.out.println("The jockey has been successfully inserted into the database!");
+				/*
+				//print jockey table (with the new jockey included)
+				String sql = "SELECT * FROM jockey";
+
+				rs = stmnt.executeQuery(sql);
+        
+				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s", "jockeyID", "_name", 
+						"colors", "height", "weight", "_rank", "earnings\n");
+				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				System.out.println();
+
+				while(rs.next())
+				{
+					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s", rs.getString(1), rs.getString(2), 
+							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+							 rs.getString(7));
+
+					System.out.println();
+				}
+
+				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				System.out.println();*/
+			}
 			//Option 6: Delete a horse
 			if(choice == 6) {
 			    String sql = "DELETE FROM horse where horseID = ?;";
