@@ -13,11 +13,14 @@ As of this moment (Fri, Feb 22) the program takes two command line arguments.
        
    - Second argument is the driver location
      - com.mysql.cj.jdbc.Driver
-     
-To execute queries via the command line:
 
-java -cp lib/mysql-connector-java-8.0.15.jar:classes ser322.TripleCrownDatabase "jdbc:mysql://localhost:3306/new_schema?autoReconnect=true&&useSSL=false&&allowPublicKeyRetrieval=true &&useLegacyDatetimeCode=false&&serverTimezone=America/New_York" root Millie6667! com.mysql.cj.jdbc.Driver
+
+Compiling via command line:
+javac -d classes/ -cp classes/ src/java/tcEdited.java
+
+To execute via the command line:
+java -cp  classes/:lib/mysql-connector-java-8.0.15.jar ser322.tcEdited  "jdbc:mysql://localhost:3306/TripleCrown" com.mysql.cj.jdbc.Driver
 
 If you have ant installed on your system:
    - Use "ant targets" to get a list of targets
-   - Use "ant execute"
+   - You can compile with ant, but for some reason the execute target doesn't work.
