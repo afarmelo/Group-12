@@ -87,14 +87,14 @@ public class tcEdited
 			Scanner scan = new Scanner(System.in);
 			int choice  = scan.nextInt();
 
-			while(choice < 1  || choice > 7)
+			while(choice < 1 || choice > 9)
 			{
-				System.out.println("Your choice has to be between 1-7");
+				System.out.println("Your choice has to be between "); 
 				System.out.print("Please enter a selection(1-7): ");
 				choice = scan.nextInt();
 			}
 
-			System.out.println("You entered: " + menu[(choice-1)]);
+			System.out.println("You entered?: " + menu[(choice-1)]);
 
 			//View race info query
 			//Option 1: Select race info
@@ -104,77 +104,75 @@ public class tcEdited
 
 				rs = stmnt.executeQuery(sql);
 
-				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s", "RaceID", "Track", 
+				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|", "RaceID", "Track", 
 						"Distance", "Prizewon", "Gates", "Participants\n");
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
 				{
-					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s", rs.getString(1), rs.getString(2), 
+					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6) );
 
 					System.out.println();
 				}
         
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			//Option 2: Select horse info
-			if(choice==2)
+			else if(choice==2)
 			{
 				String sql = "SELECT * FROM horse";
 
 				rs = stmnt.executeQuery(sql);
         
-				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s, %20s, %10s, %20s", "horseID", "_name", 
+				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", "horseID", "_name", 
 						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID\n");
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
 				{
-					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s", rs.getString(1), rs.getString(2), 
+					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),  rs.getString(7),  
 							  rs.getString(8),  rs.getString(9),  rs.getString(10) );
-
 					System.out.println();
 				}
         
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			//Option 3: Select jockey info
-			if(choice == 3)	
+			else if(choice == 3)	
 			{
 				String sql = "SELECT * FROM jockey";
 
 				rs = stmnt.executeQuery(sql);
         
-				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s", "jockeyID", "_name", 
+				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", "jockeyID", "_name", 
 						"colors", "height", "weight", "_rank", "earnings\n");
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
 				{
-					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s", rs.getString(1), rs.getString(2), 
+					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", rs.getString(1), rs.getString(2), 
 							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
 							 rs.getString(7));
 
 					System.out.println();
 				}
 
-				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 			}
 			
 			//Option 4: Add a new horse
-			if(choice == 4){
+			else if(choice == 4){
 				//declare temp variables 
 				int HORSEid, H, W, V, A, OWNERid, JOCKEYid, TRAINERid;
 				String N, B;
-				Scanner scan = new Scanner(System.in);
 				//collect data about the horse that is being added to the database
 				System.out.println("You have selected the option to add a horse.");
 				System.out.println("The required fields are Horse ID.");
@@ -201,9 +199,9 @@ public class tcEdited
 				TRAINERid = scan.nextInt();
 				
 				//create the prepared statement 
-				String query = " insert into horse (horseID, _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String query = " insert into horse (horse _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				
-				PreparedStatement pStmnt = connect.prepareStatement(query);
+				pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, HORSEid);
 				pStmnt.setString(2, N);
 				pStmnt.setInt(3, H);
@@ -217,13 +215,12 @@ public class tcEdited
 				
 				// execute the preparedstatement
       				pStmnt.execute();
-				Sytem.out.println("The horse has been successfully inserted into the database!");
+				System.out.println("The horse has been successfully inserted into the database!");
 			}
 			//Option 5: Add a new jockey
-			if(choice == 5){//declare temp variables 
+			else if(choice == 5){//declare temp variables 
 				int JOCKEYid, H, W, R, E;
 				String N, C;
-				Scanner scan = new Scanner(System.in);
 				//collect data about the jockey that is being added to the database
 				System.out.println("You have selected the option to add a jockey.");
 				System.out.println("The required fields are Jockey ID.");
@@ -244,9 +241,9 @@ public class tcEdited
 				E = scan.nextInt();
 				
 				//create the prepared statement 
-				String query = " insert into jockey (jockeyID, _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
+				String query = " insert into jockey (jockey _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
 				
-				PreparedStatement pStmnt = connect.prepareStatement(query);
+				pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, JOCKEYid);
 				pStmnt.setString(2, N);
 				pStmnt.setString(3, C);
@@ -257,10 +254,10 @@ public class tcEdited
 				
 				// execute the preparedstatement
       				pStmnt.execute();
-				Sytem.out.println("The jockey has been successfully inserted into the database!");
+				System.out.println("The jockey has been successfully inserted into the database!");
 			}
 			//Option 6: Delete a horse
-			if(choice == 6) {
+			else if(choice == 6) {
 			    String sql = "DELETE FROM horse where horseID = ?;";
 			    pStmnt = connect.prepareStatement(sql);
 			    System.out.print("Enter a horseID for the horse to remove: ");
@@ -271,7 +268,7 @@ public class tcEdited
 			    }
 			}
 			//Option 7: Delete a jockey
-			if(choice == 7){
+			else if(choice == 7){
 			    String sql = "DELETE FROM jockey where jockeyID = ?;";
 			    pStmnt = connect.prepareStatement(sql);
 			    System.out.print("Enter a jockeyID for the jockey to remove: ");
@@ -281,35 +278,68 @@ public class tcEdited
 				System.out.println("Jockey with jockeyID: " + jockeyID + " deleted successfully");
 			    }
 			}
-			//Option 8: Join Horse and Jockey
-			if(choice == 8){}
-			//Option 9: Join Horse and Winner
-			if(choice == 9)
-			{
+			//Option 8: Join Horse and Jockey (aka an employed jockey)
+			else if(choice == 8){
 			
-				String sql = "SELECT * FROM horse JOIN winner ON horse.horseID=winner.horseID";
+			
+				String sql = "SELECT * FROM jockey JOIN horse ON horse.jockeyID=jockey.jockeyID";
 
 				rs = stmnt.executeQuery(sql);
 
-				System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s", "horseID", "_name", 
-						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID", "raceID",
-						 "completiontime", "prizewon");
-				for(int i = 0; i < 220; i++) { System.out.print("-"); }
+				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", 
+						"Jockey ID", "Name", "Colors", "Height", "Weight", "Rank", "Earnings",
+							"Horse ID", "Name", "Height", "Weight", "Value", "Age", "Breed", "ownerID",
+							"jockeyID", "trainerID|\n");
+
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 
 				while(rs.next())
 				{
-					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s", rs.getString(1), rs.getString(2), 
-							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|",
+							rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+							rs.getString(9),rs.getString(10), rs.getString(11), rs.getString(12), 
+							rs.getString(13), rs.getString(14),rs.getString(15),
+							rs.getString(16),rs.getString(17));
+
+					System.out.println();
+				}
+
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				System.out.println();
+			}
+	
+
+
+			//Option 9: Join Horse and Winner
+			else if(choice == 9)
+			{
+			
+				String sql = "SELECT * FROM horse JOIN winner ON horse.jockeyID=jockey.jockeyID";
+
+				rs = stmnt.executeQuery(sql);
+
+				System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|", "horseID", "_name", 
+						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID", "raceID",
+						 "completiontime", "prizewon|");
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
+				System.out.println();
+
+				while(rs.next())
+				{
+					System.out.printf("|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|%9s|\n",
+							rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+							rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
 							  rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12));
 
 					System.out.println();
 				}
 
-				for(int i = 0; i < 220; i++) { System.out.print("-"); }
+				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
 			}
-		
+
 		} catch(Exception e) {
 			System.out.println("Exception executing statement on database");
 			e.printStackTrace();
@@ -331,6 +361,7 @@ public class tcEdited
 				se.printStackTrace();
 			}
 		}
+			
 		
 		System.out.println("disconnected..goodbye");
 
