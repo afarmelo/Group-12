@@ -221,8 +221,8 @@ public class tcEdited
 			}
 			//Option 5: Add a new jockey
 			if(choice == 5){//declare temp variables 
-				int JOCKEYid, HT, WT, RK, ERNGS;
-				String Nm, CLRS;
+				int JOCKEYid, H, W, R, E;
+				String N, C;
 				Scanner scan = new Scanner(System.in);
 				//collect data about the jockey that is being added to the database
 				System.out.println("You have selected the option to add a jockey.");
@@ -231,29 +231,29 @@ public class tcEdited
 				System.out.println("Please enter an number that represents the jockey ID:");
 				JOCKEYid = scan.nextInt();
 				System.out.println("Please enter the name of the jockey:");
-				Nm = scan.nextLine();
+				N = scan.nextLine();
 				System.out.println("Please enter the colors worn by the jockey:");
-				CLRS = scan.nextLine();
+				C = scan.nextLine();
 				System.out.println("Please enter the height of the jockey:");
-				HT = scan.nextInt();
+				H = scan.nextInt();
 				System.out.println("Please enter the weight of the jockey:");
-				WT = scan.nextInt();
+				W = scan.nextInt();
 				System.out.println("Please enter the rank of the jockey:");
-				RK = scan.nextInt();
+				R = scan.nextInt();
 				System.out.println("Please enter the earnings accrued by the jockey:");
-				ERNGS = scan.nextInt();
+				E = scan.nextInt();
 				
 				//create the prepared statement 
 				String query = " insert into jockey (jockeyID, _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
 				
 				PreparedStatement pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, JOCKEYid);
-				pStmnt.setString(2, Nm);
-				pStmnt.setString(3, CLRS);
-				pStmnt.setInt(4, HT);
-				pStmnt.setInt(5, WT);
-				pStmnt.setInt(6, RK);
-				pStmnt.setInt(7, ERNGS);
+				pStmnt.setString(2, N);
+				pStmnt.setString(3, C);
+				pStmnt.setInt(4, H);
+				pStmnt.setInt(5, W);
+				pStmnt.setInt(6, R);
+				pStmnt.setInt(7, E);
 				
 				// execute the preparedstatement
       				pStmnt.execute();
