@@ -170,7 +170,74 @@ public class tcEdited
 			}
 			
 			//Option 4: Add a new horse
-			if(choice == 4){}
+			if(choice == 4){
+				//declare temp variables 
+				int HORSEid, HEIGHT, WEIGHT, VALUE, AGE, OWNERid, JOCKEYid, TRAINERid;
+				String NAME, BREED;
+				Scanner scan = new Scanner(System.in);
+				//collect data about the horse that is being added to the database
+				System.out.println("You have selected the option to add a horse.");
+				System.out.println("The required fields are Horse ID.");
+				System.out.println("If any non-required fields are not applicable to your horse please enter NULL.");
+				System.out.println("Please enter an number that represents the horse ID:");
+				HORSEid = scan.nextInt();
+				System.out.println("Please enter the name of the horse:");
+				NAME = scan.nextLine();
+				System.out.println("Please enter the height of the horse:");
+				HEIGHT = scan.nextInt();
+				System.out.println("Please enter the weight of the horse:");
+				WEIGHT = scan.nextInt();
+				System.out.println("Please enter the value (net worth) of the horse:");
+				VALUE = scan.nextInt();
+				System.out.println("Please enter the age of the horse:");
+				AGE = scan.nextInt();
+				System.out.println("Please enter the breed of the horse:");
+				BREED = scan.nextLine();
+				System.out.println("Please enter the Owner ID number that corresponds to the horse:");
+				OWNERid = scan.nextInt();
+				System.out.println("Please enter the Jockey ID number that corresponds to the horse:");
+				JOCKEYid = scan.nextInt();
+				System.out.println("Please enter the Trainer ID number that corresponds to the horse:");
+				TRAINERid = scan.nextInt();
+				
+				//create the prepared statement 
+				String query = " insert into users (horseID, _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				
+				PreparedStatement pStmnt = connect.prepareStatement(query);
+				pStmnt.setInt(1, HORSEid);
+				pStmnt.setString(2, NAME);
+				pStmnt.setInt(3, HEIGHT);
+				pStmnt.setInt(4, WEIGHT);
+				pStmnt.setInt(5, VALUE);
+				pStmnt.setInt(6, AGE);
+				pStmnt.setString(7, BREED);
+				pStmnt.setInt(8, OWNERid);
+				pStmnt.setInt(9, JOCKEYid);
+				pStmnt.setInt(10, TRAINERid);
+				
+				// execute the preparedstatement
+      				pStmnt.execute();
+				Sytem.out.println("The horse has been successfully inserted into the database!");
+				
+				/*
+				//print horse table (with the new horse included) from database 
+				String sql = "SELECT * FROM horse";
+				rs = stmnt.executeQuery(sql);
+				System.out.printf("%10s, %20s, %20s, %20s, %10s, %20s, %20s, %20s, %10s, %20s", "horseID", "_name", 
+						"height", "weight", "_value", "age", "breed", "ownerID", "jockeyID", "trainerID\n");
+				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				System.out.println();
+				while(rs.next())
+				{
+					System.out.printf("%20s, %50s, %30s, %50s, %20s, %50s, %30s, %50s, %20s, %50s", rs.getString(1), rs.getString(2), 
+							rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),  rs.getString(7),  
+							  rs.getString(8),  rs.getString(9),  rs.getString(10) );
+					System.out.println();
+				}
+        
+				for(int i = 0; i < 150; i++) { System.out.print("-"); }
+				System.out.println();*/
+			}
 			//Option 5: Add a new jockey
 			if(choice == 5){}
 			//Option 6: Delete a horse
