@@ -19,15 +19,18 @@ public class tcEdited
 
 	private static String user;
 	private static String[] menu = {
-	    "1. Select race info\n", //kyle
-	    "2. Select horse info\n", //sierra
-	    "3. Select jockey info\n", //sierra
-	    "4. Add a new horse\n", //abigail
-	    "5. Add a new jockey\n", //abigail
-	    "6. Delete a horse\n", //adam
-	    "7. Delete a jockey\n", //adam
-	    "8. Join Horse and Jockey\n", //kyle
-	    "9. Join Horse and Winner\n"}; //sierra
+	    "1. Select race info\n",
+	    "2. Select horse info\n",
+	    "3. Select jockey info\n",
+	    "4. Add a new horse\n",
+	    "5. Add a new jockey\n",
+	    "6. Delete a horse\n",
+	    "7. Delete a jockey\n",
+	    "8. Join Horse and Jockey\n",
+	    "9. Join Horse and Winner\n",
+	    "10. Update horse info\n",
+	    "11. Update jockey info\n"};
+    
 	/**
 	* Display a menu to the user
 	*/
@@ -43,7 +46,7 @@ public class tcEdited
 		}
 
 		System.out.println("\n---------------------------\n");
-		System.out.print("Please enter a selection(1-9): ");
+		System.out.print("Please enter a selection(1-11): ");
 	}
 
 	public static void main(String[] args) {
@@ -87,14 +90,14 @@ public class tcEdited
 			Scanner scan = new Scanner(System.in);
 			int choice  = scan.nextInt();
 
-			while(choice < 1 || choice > 9)
+			while(choice < 1 || choice > 11)
 			{
-				System.out.println("Your choice has to be between "); 
+				System.out.println("Your choice has to be between 1 - 11"); 
 				System.out.print("Please enter a selection(1-7): ");
 				choice = scan.nextInt();
 			}
 
-			System.out.println("You entered?: " + menu[(choice-1)]);
+			System.out.println("You entered: " + menu[(choice-1)]);
 
 			//View race info query
 			//Option 1: Select race info
@@ -339,6 +342,111 @@ public class tcEdited
 
 				for(int i = 0; i < 135; i++) { System.out.print("-"); }
 				System.out.println();
+			}
+			else if(choice == 10){ // update horse
+			    String[] params = new String[]{
+				        "_name", "height", "weight",
+					"_value", "age", "breed",
+					"ownerID", "jockeyID", "trainerID"};
+
+			    String sql = "UPDATE horse SET";
+			    String sqlWhere = "WHERE horseID=?";
+
+			    System.out.print("Enter the horseID for the horse to update: ");
+			    String horseID = scan.next();
+			    System.out.println();
+
+			    int paramCount = 0;
+			    Object[] varArgs = new Object[9];
+			    for (int i=0; i<params.length; i++) {
+				System.out.print("Would you like to update " + params[i] + "?(y/n) ");
+				String paramChoice = scan.next();
+				if (paramChoice.toLowerCase().equals("y")) {
+				    sql += " " + params[i] + "=?,";
+				    System.out.print("Enter a value for " + params[i] + ": ");
+				    String val = scan.next();
+				    if (!params[i].equals("_name") && !params[i].equals("_value")
+					&& !params[i].equals("breed")) {
+					Integer intVal = Integer.parseInt(val);
+					varArgs[paramCount] = (intVal);
+				    } else {
+					varArgs[paramCount] = (val);
+				    }
+				    paramCount++;
+				}
+				System.out.println();
+			    }
+
+			    String fullStatement = sql.substring(0, sql.length()-1) + " " + sqlWhere + ";";
+			    pStmnt = connect.prepareStatement(fullStatement);
+			    System.out.println(fullStatement);
+
+			    int i;
+			    for (i=0; i<paramCount; i++) {
+				if (varArgs[i].getClass().equals(java.lang.Integer.class)) {
+				    pStmnt.setInt(i+1, (int)varArgs[i]);
+				} else {
+				    pStmnt.setString(i+1, (String)varArgs[i]);
+				}
+				System.out.println("Arg: " + varArgs[i] + " Arg type: " + varArgs[i].getClass());
+			    }
+
+			    pStmnt.setInt(++i, Integer.parseInt(horseID));
+
+			    if (pStmnt.executeUpdate() > 0) {
+				System.out.println("Horse with horseID: " + horseID + " updated successfully.");
+			    }
+			}
+			else if(choice == 11){ // update jockey
+			    String[] params = new String[]{
+				        "_name", "colors", "height",
+					"weight", "_rank", "earnings"};
+
+			    String sql = "UPDATE jockey SET";
+			    String sqlWhere = "WHERE jockeyID=?";
+
+			    System.out.print("Enter the jockeyID for the jockey to update: ");
+			    String jockeyID = scan.next();
+			    System.out.println();
+
+			    int paramCount = 0;
+			    Object[] varArgs = new Object[9];
+			    for (int i=0; i<params.length; i++) {
+				System.out.print("Would you like to update " + params[i] + "?(y/n) ");
+				String paramChoice = scan.next();
+				if (paramChoice.toLowerCase().equals("y")) {
+				    sql += " " + params[i] + "=?,";
+				    System.out.print("Enter a value for " + params[i] + ": ");
+				    String val = scan.next();
+				    if (!params[i].equals("_name") && !params[i].equals("colors")) {
+					Integer intVal = Integer.parseInt(val);
+					varArgs[paramCount] = (intVal);
+				    } else {
+					varArgs[paramCount] = (val);
+				    }
+				    paramCount++;
+				}
+				System.out.println();
+			    }
+
+			    String fullStatement = sql.substring(0, sql.length()-1) + " " + sqlWhere + ";";
+			    pStmnt = connect.prepareStatement(fullStatement);
+			    System.out.println(fullStatement);
+
+			    int i;
+			    for (i=0; i<paramCount; i++) {
+				if (varArgs[i].getClass().equals(java.lang.Integer.class)) {
+				    pStmnt.setInt(i+1, (int)varArgs[i]);
+				} else {
+				    pStmnt.setString(i+1, (String)varArgs[i]);
+				}
+			    }
+
+			    pStmnt.setInt(++i, Integer.parseInt(jockeyID));
+
+			    if (pStmnt.executeUpdate() > 0) {
+				System.out.println("Jockey with jockeyID: " + jockeyID + " updated successfully.");
+			    }
 			}
 
 		} catch(Exception e) {
