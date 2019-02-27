@@ -202,7 +202,7 @@ public class tcEdited
 				TRAINERid = scan.nextInt();
 				
 				//create the prepared statement 
-				String query = " insert into horse (horse _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				String query = " insert into horse (horseID, _name, height, weight, _value, age, breed, ownerID, jockeyID, trainerID)"+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				
 				pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, HORSEid);
@@ -244,7 +244,7 @@ public class tcEdited
 				E = scan.nextInt();
 				
 				//create the prepared statement 
-				String query = " insert into jockey (jockey _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
+				String query = " insert into jockey (jockeyID, _name, colors, height, weight, _rank, earnings)"+ " values (?, ?, ?, ?, ?, ?, ?)";
 				
 				pStmnt = connect.prepareStatement(query);
 				pStmnt.setInt(1, JOCKEYid);
