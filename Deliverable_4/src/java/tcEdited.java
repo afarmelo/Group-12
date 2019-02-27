@@ -182,6 +182,7 @@ public class tcEdited
 				System.out.println("If any non-required fields are not applicable to your horse please enter NULL.");
 				System.out.println("Please enter an number that represents the horse ID:");
 				HORSEid = scan.nextInt();
+				scan.nextLine();
 				System.out.println("Please enter the name of the horse:");
 				N = scan.nextLine();
 				System.out.println("Please enter the height of the horse:");
@@ -192,6 +193,7 @@ public class tcEdited
 				V = scan.nextInt();
 				System.out.println("Please enter the age of the horse:");
 				A = scan.nextInt();
+				scan.nextLine();
 				System.out.println("Please enter the breed of the horse:");
 				B = scan.nextLine();
 				System.out.println("Please enter the Owner ID number that corresponds to the horse:");
@@ -230,6 +232,7 @@ public class tcEdited
 				System.out.println("If any non-required fields are not applicable to your jockey please enter NULL.");
 				System.out.println("Please enter an number that represents the jockey ID:");
 				JOCKEYid = scan.nextInt();
+				scan.nextLine();
 				System.out.println("Please enter the name of the jockey:");
 				N = scan.nextLine();
 				System.out.println("Please enter the colors worn by the jockey:");
